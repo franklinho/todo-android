@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">ToDo</string>
+    <string name="submit_label">Submit</string>
+    <string name="nothing_label">Nothing Yet</string>
+    <string name="enter_any_text_label">Enter any text</string>
+    <string name="add">Add</string>
+    <string name="add_item">Add a new item ...</string>
+</resources>
