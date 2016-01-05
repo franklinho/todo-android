@@ -5,20 +5,20 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
 import com.activeandroid.query.Select;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class ToDoActivity extends AppCompatActivity {
 
+//    ArrayList<TodoItem> todoItems;
     List<TodoItem> queryResults;
-    ArrayList<String> todoItems;
-    ArrayAdapter<String> aToDoAdapter;
+//    ArrayList<String> todoItems;
+    ToDoItemsAdapter aToDoAdapter;
+//    ArrayAdapter<String> aToDoAdapter;
     ListView lvItems;
     EditText etEditText;
 
@@ -28,6 +28,8 @@ public class ToDoActivity extends AppCompatActivity {
         setContentView(R.layout.activity_to_do);
 
         // Views are create din the layout, find the references in the view
+//        queryResults = new List<TodoItem>();
+//        aToDoAdapter = new ToDoItemsAdapter(this, queryResults);
         populateArrayItems();
         lvItems = (ListView) findViewById(R.id.lvItems);
         etEditText = (EditText) findViewById(R.id.etEditText);
@@ -35,9 +37,13 @@ public class ToDoActivity extends AppCompatActivity {
         lvItems.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
             @Override
             public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
-                todoItems.remove(position);
+//                todoItems.remove(position);
 //                writeItems();
-                TodoItem.delete(TodoItem.class, position);
+//
+                TodoItem removeItem = queryResults.get(position);
+                aToDoAdapter.remove(removeItem);
+                removeItem.delete();
+                queryResults.remove(removeItem);
                 aToDoAdapter.notifyDataSetChanged();
                 return true;
             }
@@ -47,7 +53,7 @@ public class ToDoActivity extends AppCompatActivity {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
                 i.putExtra("position", position);
-                i.putExtra("todoItemText", todoItems.get(position));
+                i.putExtra("todoItemText", queryResults.get(position).name.toString());
                 startActivityForResult(i, 1);
             }
         });
@@ -60,7 +66,7 @@ public class ToDoActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 1) {
             String name = data.getExtras().getString("todoItemText");
             int position = data.getExtras().getInt("position");
-            todoItems.set(position, name.toString());
+//            todoItems.set(position, name.toString());
             TodoItem updateItem = queryResults.get(position);
             updateItem.name = name;
             updateItem.save();
@@ -71,19 +77,22 @@ public class ToDoActivity extends AppCompatActivity {
     }
 
     public void populateArrayItems() {
-        todoItems = new ArrayList<String>();
+//        todoItems = new ArrayList<String>();
         readItems();
-        aToDoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, todoItems);
+//        aToDoAdapter = new ArrayAdapter<String>(this, android.R.layout.simple_list_item_1, todoItems);
+//        aToDoAdapter = new ToDoItemsAdapter(this, todoItems);
     }
 
 
 
     public void onAddItem(View view) {
-        aToDoAdapter.add(etEditText.getText().toString());
+
 //        writeItems();
         TodoItem addItem = new TodoItem();
         addItem.name = etEditText.getText().toString();
         addItem.save();
+//        aToDoAdapter.add(addItem);
+        queryResults.add(addItem);
         etEditText.setText("");
 
     }
@@ -98,10 +107,13 @@ public class ToDoActivity extends AppCompatActivity {
 //
 //        }
         queryResults = new Select().from(TodoItem.class).execute();
-        todoItems = new ArrayList<String>();
-        for (TodoItem result : queryResults) {
-            todoItems.add((String) result.name);
-        }
+
+        aToDoAdapter = new ToDoItemsAdapter(this, queryResults);
+
+//        todoItems = new ArrayList<String>();
+//        for (TodoItem result : queryResults) {
+//            todoItems.add((String) result.name);
+//        }
 
     }
 

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:weightSum="1"
+    android:orientation="horizontal">
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Name"
+        android:id="@+id/tvName"
+        android:layout_gravity="left|center_vertical"
+        android:layout_weight="0.24" />
+
+    <TextView
+        android:layout_width="160dp"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceMedium"
+        android:text="Priority"
+        android:id="@+id/tvPriority"
+        android:layout_weight="0.24"
+        android:layout_gravity="right|center_vertical"
+        android:gravity="center"
+        android:textColor="#FFFFFF"
+        android:background="#81d8d0"/>
+</LinearLayout>
