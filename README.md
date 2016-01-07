@@ -14,9 +14,9 @@ Submission Check List
 * :white_check_mark: Required: Did you create an issue on the repo and include /cc @codepathreview @codepath in the issue body?
 * :white_check_mark: Suggested: Persist the todo items into SQLite instead of a text file USED ACTIVE ANDROID
 * :white_check_mark: Suggested: Improve style of the todo items in the list using a custom adapter
-* :white_large_square: Suggested: Add support for completion due dates for todo items (and display within listview item)
+* :white_check_mark: Suggested: Add support for completion due dates for todo items (and display within listview item)
 * :white_large_square: Suggested: Use a DialogFragment instead of new Activity for editing items
-* :white_large_square: Suggested: Add support for selecting the priority of each todo item (and display in listview item)
+* :white_check_mark: Suggested: Add support for selecting the priority of each todo item (and display in listview item)
 * :white_large_square: Suggested: Tweak the style improving the UI / UX, play with colors, images or backgrounds
 
 

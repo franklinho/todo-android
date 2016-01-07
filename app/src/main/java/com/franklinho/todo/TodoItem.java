@@ -4,13 +4,14 @@ import com.activeandroid.Model;
 import com.activeandroid.annotation.Column;
 import com.activeandroid.annotation.Table;
 
+import java.io.Serializable;
 import java.util.Date;
 
 /**
  * Created by franklinho on 1/5/16.
  */
 @Table(name="TodoItems")
-public class TodoItem extends Model {
+public class TodoItem extends Model implements Serializable {
     @Column(name = "Name", index=true)
     public String name;
 

@@ -10,9 +10,12 @@ import android.widget.ListView;
 
 import com.activeandroid.query.Select;
 
+import java.io.Serializable;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.List;
 
-public class ToDoActivity extends AppCompatActivity {
+public class ToDoActivity extends AppCompatActivity implements Serializable {
 
 //    ArrayList<TodoItem> todoItems;
     List<TodoItem> queryResults;
@@ -54,6 +57,7 @@ public class ToDoActivity extends AppCompatActivity {
                 Intent i = new Intent(ToDoActivity.this, EditItemActivity.class);
                 i.putExtra("position", position);
                 i.putExtra("todoItemText", queryResults.get(position).name.toString());
+                i.putExtra("ToDoItem", queryResults.get(position));
                 startActivityForResult(i, 1);
             }
         });
@@ -66,9 +70,19 @@ public class ToDoActivity extends AppCompatActivity {
         if (resultCode == RESULT_OK && requestCode == 1) {
             String name = data.getExtras().getString("todoItemText");
             int position = data.getExtras().getInt("position");
+            String notes = data.getExtras().getString("notes");
+            int priority = data.getExtras().getInt("priority");
+            boolean completed =data.getExtras().getBoolean("completed");
+            SimpleDateFormat dateformatter = new SimpleDateFormat("EEE MMM dd HH:mm:ss zzz yyyy");
+            Date dueDate = new Date(data.getExtras().getLong("dueDate"));
+//            Date dueDate = new Date(data.getExtras().getInt("year"), data.getExtras().getInt("month"), data.getExtras().getInt("day"),0,0,0);
 //            todoItems.set(position, name.toString());
             TodoItem updateItem = queryResults.get(position);
             updateItem.name = name;
+            updateItem.notes = notes;
+            updateItem.priority = priority;
+            updateItem.completed = completed;
+            updateItem.dueDate = dueDate;
             updateItem.save();
             int code = data.getExtras().getInt("code", 0);
 //            writeItems();

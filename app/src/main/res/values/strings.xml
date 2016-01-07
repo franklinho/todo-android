@@ -7,4 +7,21 @@
     <string name="add_item">Add a new item ...</string>
     <string name="edit_item_below">Edit Item Below:</string>
     <string name="save">Save</string>
+    <string name="name_label">Name:</string>
+    <string name="due_date_label">Due Date:</string>
+    <string name="priority_label">Priority:</string>
+    <string name="notes_string">Notes:</string>
+    <string name="status_string">Status:</string>
+
+    <string-array name="priority_levels">
+        <item>High</item>
+        <item>Medium</item>
+        <item>Low</item>
+    </string-array>
+
+    <string-array name="completed_statuses">
+        <item>To Do</item>
+        <item>Completed</item>
+    </string-array>
+
 </resources>
