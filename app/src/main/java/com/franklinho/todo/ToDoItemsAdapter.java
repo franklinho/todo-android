@@ -28,6 +28,7 @@ public class ToDoItemsAdapter extends ArrayAdapter<TodoItem> {
         TextView tvName = (TextView) convertView.findViewById(R.id.tvName);
         TextView tvPriority = (TextView) convertView.findViewById(R.id.tvPriority);
         TextView tvDueDate = (TextView) convertView.findViewById(R.id.tvDueDate);
+        tvDueDate.setText("");
 
         tvName.setText(todoitem.name);
         String priorityString;
@@ -48,8 +49,12 @@ public class ToDoItemsAdapter extends ArrayAdapter<TodoItem> {
 
         tvPriority.setText(priorityString);
         if (todoitem.dueDate != null) {
-            SimpleDateFormat dateformat = new SimpleDateFormat("MMM/dd/yyyy");
-            tvDueDate.setText(dateformat.format(todoitem.dueDate));
+//            if (todoitem.dueDateAdded == true) {
+                SimpleDateFormat dateformat = new SimpleDateFormat("MMM/dd/yyyy");
+                tvDueDate.setText(dateformat.format(todoitem.dueDate));
+//            } else {
+//                tvDueDate.setText("");
+//            }
         }
 
         return convertView;

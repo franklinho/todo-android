@@ -39,7 +39,14 @@ public class EditItemActivity extends AppCompatActivity {
             etNotes.setText(todoitem.notes);
         }
         if (todoitem.dueDate != null) {
-            dpDueDate.updateDate(todoitem.dueDate.getYear(),todoitem.dueDate.getMonth(),todoitem.dueDate.getDay());
+            dpDueDate.setMinDate(System.currentTimeMillis() - 1000);
+
+            Calendar cal = Calendar.getInstance();
+            cal.setTime(todoitem.dueDate);
+            int dueDateYear = cal.get(Calendar.YEAR);
+            int dueDateMonth = cal.get(Calendar.MONTH);
+            int dueDateDay = cal.get(Calendar.DAY_OF_MONTH);
+            dpDueDate.updateDate(dueDateYear,dueDateMonth,dueDateDay);
         }
 
         if (todoitem.completed != false) {

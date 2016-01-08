@@ -83,6 +83,7 @@ public class ToDoActivity extends AppCompatActivity implements Serializable {
             updateItem.priority = priority;
             updateItem.completed = completed;
             updateItem.dueDate = dueDate;
+//            updateItem.dueDateAdded = true;
             updateItem.save();
             int code = data.getExtras().getInt("code", 0);
 //            writeItems();
@@ -104,6 +105,9 @@ public class ToDoActivity extends AppCompatActivity implements Serializable {
 //        writeItems();
         TodoItem addItem = new TodoItem();
         addItem.name = etEditText.getText().toString();
+
+//        addItem.dueDate = new Date();
+        addItem.priority = 2;
         addItem.save();
 //        aToDoAdapter.add(addItem);
         queryResults.add(addItem);
@@ -130,6 +134,7 @@ public class ToDoActivity extends AppCompatActivity implements Serializable {
 //        }
 
     }
+
 
     private void writeItems() {
 //        File filesDir = getFilesDir();

@@ -27,6 +27,10 @@ public class TodoItem extends Model implements Serializable {
     @Column(name = "DueDate", index=true)
     public Date dueDate;
 
+//    @Column(name = "DueDateAdded", index=true)
+//    public boolean dueDateAdded;
+
+
     public TodoItem() {
         super();
     }
@@ -38,6 +42,7 @@ public class TodoItem extends Model implements Serializable {
         this.notes = notes;
         this.completed = completed;
         this.dueDate = dueDate;
+//        this.dueDateAdded = dueDateAdded;
     }
 
 

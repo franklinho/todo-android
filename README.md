@@ -23,5 +23,6 @@ Submission Check List
 Walkthrough of all user stories:
 
 ![Video Walkthrough](anim_todo.gif)
+![Video Walkthrough](anim_todo_update.gif)
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
